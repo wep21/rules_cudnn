@@ -1,0 +1,10 @@
+module(name = "rules_cudnn", version = "0.1.0")
+
+bazel_dep(name = "platforms", version = "0.0.10")
+bazel_dep(name = "rules_cc", version = "0.0.9")
+
+cudnn = use_extension("@rules_cudnn//:cudnn/repositories.bzl", "cudnn")
+use_repo(
+    cudnn,
+    "local_cudnn",
+)

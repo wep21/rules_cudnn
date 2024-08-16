@@ -1,0 +1,8 @@
+cc_binary(
+    name = "main",
+    srcs = ["main.cpp"],
+    deps = [
+	"@local_cudnn//:cudnn",
+	"@rules_cuda//cuda:runtime",
+    ]
+)

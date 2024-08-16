@@ -1,0 +1,26 @@
+module(
+    name = "rules_cudnn_examples",
+    version = "0.0.0",
+    compatibility_level = 1,
+)
+
+bazel_dep(name = "rules_cuda", version = "0.2.1")
+
+cuda = use_extension("@rules_cuda//cuda:extensions.bzl", "toolchain")
+cuda.local_toolchain(
+    name = "local_cuda",
+    toolkit_path = "",
+)
+use_repo(cuda, "local_cuda")
+
+bazel_dep(name = "rules_cudnn", version = "0.1.0")
+local_path_override(
+    module_name = "rules_cudnn",
+    path = "..",
+)
+
+cudnn = use_extension("@rules_cudnn//:cudnn/repositories.bzl", "cudnn")
+use_repo(
+    cudnn,
+    "local_cudnn",
+)
